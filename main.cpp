@@ -55,6 +55,13 @@ bool inisialisasiDatabase() {
     jalankanSQL(sql);
     return true;
 }
+void ClearQueue() {
+    resetQueue();
+    const char* sql = "DELETE FROM riwayat_antrian WHERE status = 'Menunggu';";
+    jalankanSQL(sql);
+    cout << "Antrian telah dikosongkan." << endl;
+
+}
 
 void loadAntrianDariDatabase() {
     resetQueue();
@@ -146,10 +153,6 @@ void dequeue() {
         }
     }
 }
-void clearQueue() {
-    resetQueue();
-    cout << "Antrian telah dikosongkan." << endl;
-}
 
 void tampilkanAntrian() {
     if (isEmpty()) {
@@ -202,7 +205,7 @@ int main() {
                 tampilkanAntrian();
                 break;
             case 4:
-                clearQueue();
+                ClearQueue();
                 break;
             case 5:
                 cout << "Program selesai." << endl;
